@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <algorithm>
 
 void addElement(int *array, int &array_size, int &eleelement_sizeme);
 void print_element(int *array,int &array_size,int &element_size);
@@ -9,7 +11,7 @@ using namespace std;
 int main(){
 
     bool running = true;
-    char selection;
+    string selection;
     int array_size = 2;
     int element_size = 0;
 
@@ -23,28 +25,40 @@ int main(){
         cout<<endl<<endl<<"(p) Print Elements"<<endl<<"(a) Add Elements"<<endl<<"(d) Delete Element"<<endl<<"(r) Return Size"<<endl<<"(e) Exit"<<endl;
         cout<<"Enter Option : ";
         cin>>selection;
-        selection = toupper(selection);
-        if(selection=='E'){
+        transform(selection.begin(), selection.end(), selection.begin(), ::toupper);
+        
+        try{
+
+            if(selection.size() > 1 ){
+                throw "Size Greater Than 1 In Input";
+            }
+        
+        
+        if(selection=="E"){
             running=false;
             delete [] array;
         }
-        else if (selection=='A')
+        else if (selection=="A")
         {
             addElement(array,array_size,element_size);
         }
-        else if(selection == 'P'){
+        else if(selection == "P"){
             print_element(array,array_size,element_size);
         }
-        else if(selection == 'D'){
+        else if(selection == "D"){
             delete_element(array,array_size,element_size);
         }
-        else if(selection == 'R'){
+        else if(selection == "R"){
             cout<<endl<<"S: "<<array_size<<", E: "<<element_size<<endl;
         }
     }
     
-
-
+    catch(const char * error)
+    {
+        cout<<"Error Due to " <<error<<endl;
+    }
+    
+    }
 
 }
 
