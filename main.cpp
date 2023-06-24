@@ -112,6 +112,7 @@ void print_element(int *array,int &array_size,int &element_size){
 
 void delete_element(int *array,int &array_size,int &element_size){
     int del;
+    bool at_least_one=false;
 
     cout<<"Enter Element"<<endl;
     cin>>del;
@@ -119,7 +120,7 @@ void delete_element(int *array,int &array_size,int &element_size){
     for(int x=0 ;x<element_size;x++){
 
         if (array[x]==del){
-
+                at_least_one=true;
                 for(int y = x; y < element_size-1;y++){
 
                     array[y]=array[y+1];
@@ -132,6 +133,10 @@ void delete_element(int *array,int &array_size,int &element_size){
 
 
     }
+    if(!at_least_one){
+        cout<<"Not there"<<endl;
+    }
+    
     if(element_size<=array_size/2){
         int temp[array_size];
 
