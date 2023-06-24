@@ -132,7 +132,7 @@ void delete_element(int *array,int &array_size,int &element_size){
 
 
     }
-    if(element_size<array_size/2){
+    if(element_size<=array_size/2){
         int temp[array_size];
 
         for (int x=0;x<array_size;x++){
